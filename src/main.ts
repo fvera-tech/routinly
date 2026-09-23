@@ -1,5 +1,11 @@
-// Se definen las reglas de los datos a almacenar.
 
+// IMPORTS
+
+import "./style.css";
+
+
+
+// Se definen las reglas de los datos a almacenar.
 
 type Serie = number | { izquierda: number; derecha: number };
 
