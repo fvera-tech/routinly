@@ -13,7 +13,7 @@
 
   <main class="main">
     <section class="title">
-      <h1>Routine<span>ly</span></h1>
+      <h1>Routin<span>ly</span></h1>
     </section>
 
     <section class="graph">
@@ -26,79 +26,124 @@
         <fieldset class="first-selection">
           <div class="date">
             <label for="ex-date">Fecha de la rutina</label>
-            <input type="date" name="ex-date">
+            <input type="date" name="ex-date" class="date-input">
           </div>
-          <div class="radio-group">
-            <div class="radio-option">
-              <input type="radio" name="routine" id="routine">
-              <label for="routine">Rutina A</label>
-            </div>
-            <div class="radio-option">
-              <input type="radio" name="routine" id="routine">
-              <label for="routine">Rutina B</label>
-            </div>
-            <button class="submit-btn">Seleccionar</button>
-          </div>
+          <select id="routine">
+            <option value="A">A</option>
+            <option value="B">B</option>
+          </select>
 
         </fieldset>
 
         <fieldset class="exercises">
 
           <div class="exercise">
-            <label for="">Planchas</label>
+            <h4 class="input-title">Planchas</h4>
             <div class="inputs">
-              <input type="number">
-              <input type="number">
+              <input type="number" id="planches-ex">
+              <label for="planches-ex">(seg) Acción</label>
+              <input type="number" id="planches-rest">
+              <label for="planches-rest"> (seg) Descanso</label>
             </div>
           </div>
 
           <div class="exercise">
-            <label for="">Sentadilla Goblet</label>
+            <h4 class="input-title">Sentadilla Goblet</h4>
             <div class="inputs">
-              <input type="number">
-              <input type="number">
-              <input type="number">
+              <div class="goblet-series">
+                <input type="number" id="goblet-series">
+                <label for="goblet-series">Series</label>
+              </div>
+              <div class="goblet-reps">
+                <input type="number" id="goblet-reps">
+                <label for="goblet-reps">Repeticiones</label>
+              </div>
+              <div class="goblet-rest">
+                <input type="number" id="goblet-rest">
+                <label for="goblet-rest">(seg) Descanso</label>
+              </div>
             </div>
           </div>
 
           <div class="exercise">
-            <label for="">Flexiones</label>
+            <h4 class="input-title">Flexiones</h4>
             <div class="inputs">
-              <input type="number">
-              <input type="number">
-              <input type="number">
+              <div class="pushups-series">
+                <input type="number" name="pushups" id="pushups-series">
+                <label for="pushups-series">Series</label>
+              </div>
+              <div class="pushups-reps">
+                <input type="number" name="pushups" id="pushups-reps">
+                <label for="pushups-reps">Repeticiones</label>
+              </div>
+              <div class="pushups-rest">
+                <input type="number" name="pushups" id="pushups-rest">
+                <label for="pushups-rest">(seg) Descanso</label>
+              </div>
+
             </div>
           </div>
 
           <div class="exercise">
-            <label for="">Remo con Mancuerna</label>
+            <h4 class="input-title">Remo con Mancuernas</h4>
             <div class="inputs">
-              <input type="number">
-              <input type="number">
-              <input type="number">
+              <div class="dumbbell-series">
+                <input type="number" name="dumbbell" id="dumbbell-series">
+                <label for="dumbbell-series">Series</label>
+              </div>
+              <div class="dumbbell-reps">
+                <input type="number" name="dumbbell" id="dumbbell-reps">
+                <label for="dumbbell-reps">Repeticiones</label>
+              </div>
+              <div class="dumbbell-rest">
+                <input type="number" name="dumbbell" id="dumbbell-rest">
+                <label for="dumbbell-rest">(seg) Descanso</label>
+              </div>
             </div>
           </div>
 
           <div class="exercise">
-            <label for="">Curl de Bíceps</label>
+            <h4 class="input-title">Curl de Bíceps</h4>
             <div class="inputs">
-              <input type="number">
-              <input type="number">
-              <input type="number">
-              <input type="number">
-              <input type="number">
+              <div class="curl-series">
+                <input type="number" name="curl" id="curl-series">
+                <label for="curl-series">Series</label>
+              </div>
+              <div class="curl-right">
+                <p class="curl-arm">Brazo Derecho</p>
+                <input type="number" name="curl" id="curl-right__1">
+                <input type="number" name="curl" id="curl-right__2">
+                <input type="number" name="curl" id="curl-right__3">
+                <input type="number" name="curl" id="curl-right__4">
+              </div>
+              <div class="curl-left">
+                <p class="curl-arm">Brazo Izquierdo</p>
+                <input type="number" name="curl" id="curl-left__1">
+                <input type="number" name="curl" id="curl-left__2">
+                <input type="number" name="curl" id="curl-left__3">
+                <input type="number" name="curl" id="curl-left__4">
+              </div>
             </div>
           </div>
 
           <div class="exercise">
-            <label for="">Fondos de Tríceps</label>
+            <h4 class="input-title">Fondos de tríceps</h4>
             <div class="inputs">
-              <input type="number">
-              <input type="number">
-              <input type="number">
+              <div class="triceps-series">
+                <input type="number" name="triceps" id="triceps-series">
+                <label for="triceps-series">Series</label>
+              </div>
+              <div class="triceps-reps">
+                <input type="number" name="triceps" id="triceps-reps">
+                <label for="triceps-reps">Repeticiones</label>
+              </div>
+              <div class="triceps-rest">
+                <input type="number" name="triceps" id="triceps-rest">
+                <label for="triceps-rest">(seg) Descanso</label>
+              </div>
             </div>
           </div>
-
+          <button type="button" class="submit-btn">Seleccionar</button>
         </fieldset>
       </form>
     </section>
