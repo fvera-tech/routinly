@@ -29,3 +29,102 @@
     font-size: 16px;
   }
 }
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
+
+  max-width: 70vw;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(8, minmax(10vh, auto));
+
+  place-items: center;
+  gap: 1rem;
+}
+
+.title {
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+}
+
+.form {
+  grid-column: 1 / 4;
+  grid-row: 2 / 4;
+
+  width: 100%;
+  max-height: 100%;
+
+}
+
+.graph {
+  background-color: orangered;
+  grid-column: 1 / 4;
+  grid-row: 4 / 7;
+
+  width: 100%;
+  height: 100%;
+}
+
+.summary {
+  background-color: rgb(26, 26, 124);
+  grid-column: 1 / 4;
+  grid-row: 7 / 9;
+
+  width: 100%;
+  height: 100%;
+}
+
+@media(min-width: 768px) {
+  .title {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  .form {
+    grid-column: 3 / 4;
+    grid-row: 1 / 6;
+
+  }
+
+  .graph {
+    background-color: orangered;
+    grid-column: 1 / 3;
+    grid-row: 2 / 6;
+  }
+
+  .summary {
+    background-color: rgb(26, 26, 124);
+    grid-column: 1 / 4;
+    grid-row: 6 / 9;
+  }
+}
+
+/* FORMULARIO */
+
+.first-selection {
+  display: flex;
+  justify-content: space-around;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+}
+
+
+.inputs {
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.inputs>input {
+  width: 4rem;
+}
