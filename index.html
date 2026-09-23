@@ -1,13 +1,114 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fit-tracker</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./src/style.css">
+  <title>fit-tracker</title>
+</head>
+
+<body>
+
+  <main class="main">
+    <section class="title">
+      <h1>Routine<span>ly</span></h1>
+    </section>
+
+    <section class="graph">
+      <p>SOY UN GRÁFICO</p>
+    </section>
+
+    <section class="form">
+      <form>
+        <legend>Ingresa tu rutina</legend>
+        <fieldset class="first-selection">
+          <div class="date">
+            <label for="ex-date">Fecha de la rutina</label>
+            <input type="date" name="ex-date">
+          </div>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" name="routine" id="routine">
+              <label for="routine">Rutina A</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="routine" id="routine">
+              <label for="routine">Rutina B</label>
+            </div>
+            <button class="submit-btn">Seleccionar</button>
+          </div>
+
+        </fieldset>
+
+        <fieldset class="exercises">
+
+          <div class="exercise">
+            <label for="">Planchas</label>
+            <div class="inputs">
+              <input type="number">
+              <input type="number">
+            </div>
+          </div>
+
+          <div class="exercise">
+            <label for="">Sentadilla Goblet</label>
+            <div class="inputs">
+              <input type="number">
+              <input type="number">
+              <input type="number">
+            </div>
+          </div>
+
+          <div class="exercise">
+            <label for="">Flexiones</label>
+            <div class="inputs">
+              <input type="number">
+              <input type="number">
+              <input type="number">
+            </div>
+          </div>
+
+          <div class="exercise">
+            <label for="">Remo con Mancuerna</label>
+            <div class="inputs">
+              <input type="number">
+              <input type="number">
+              <input type="number">
+            </div>
+          </div>
+
+          <div class="exercise">
+            <label for="">Curl de Bíceps</label>
+            <div class="inputs">
+              <input type="number">
+              <input type="number">
+              <input type="number">
+              <input type="number">
+              <input type="number">
+            </div>
+          </div>
+
+          <div class="exercise">
+            <label for="">Fondos de Tríceps</label>
+            <div class="inputs">
+              <input type="number">
+              <input type="number">
+              <input type="number">
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+    </section>
+
+    <section class="summary">
+      <P>SOY EL RESUMEN EN TEXTO</P>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>
