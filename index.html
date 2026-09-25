@@ -13,7 +13,7 @@
 
   <header class="header">
     <h1 class="project-title">Routine<span>ly</span></h1>
-    <button class="add-btn">Agregar Sesión</button>
+    <button class="add-btn btn">Agregar Sesión</button>
   </header>
 
   <main class="main">
@@ -22,7 +22,7 @@
     <!-- RECORD -->
     <section class="record">
 
-      <div class="routine-card">
+      <div class="routine-card card-a">
 
         <header class="card-header">
           <h4 class="routine-name">Full Body A</h4>
@@ -66,7 +66,7 @@
         </section> <!-- Card Content-->
       </div> <!-- CARD -->
 
-      <div class="routine-card">
+      <div class="routine-card card-b">
 
         <header class="card-header">
           <h4 class="routine-name">Full Body B</h4>
@@ -107,7 +107,7 @@
         </section> <!-- Card Content-->
       </div> <!-- CARD -->
 
-      <div class="routine-card">
+      <div class="routine-card card-a">
 
         <header class="card-header">
           <h4 class="routine-name">Full Body A</h4>
@@ -150,7 +150,7 @@
           </main>
         </section> <!-- Card Content-->
       </div> <!-- CARD -->
-      <div class="routine-card">
+      <div class="routine-card card-b">
 
         <header class="card-header">
           <h4 class="routine-name">Full Body A</h4>
@@ -193,7 +193,7 @@
           </main>
         </section> <!-- Card Content-->
       </div> <!-- CARD -->
-      <div class="routine-card">
+      <div class="routine-card card-a">
 
         <header class="card-header">
           <h4 class="routine-name">Full Body A</h4>
@@ -236,7 +236,7 @@
           </main>
         </section> <!-- Card Content-->
       </div> <!-- CARD -->
-      <div class="routine-card">
+      <div class="routine-card card-a">
 
         <header class="card-header">
           <h4 class="routine-name">Full Body A</h4>
@@ -282,296 +282,302 @@
     </section>
   </main>
 
+  <section class="modal hidden">
+    <button class="close-btn">X</button>
+    <form class="session-form">
+
+      <fieldset class="initial-info">
+        <legend>Información Inicial</legend>
+        <input type="date" id="date">
+        <select id="routine">
+          <option value="placeholder" selected disabled>-- Elija Rutina --</option>
+          <option value="A">Full Body A</option>
+          <option value="B">Full Body B</option>
+        </select>
+        <button class="initial-btn btn">Seleccionar</button>
+      </fieldset>
 
 
+      <!-- RUTINA A -->
+      <fieldset class="full-body-a hidden">
+        <legend>Full Body A</legend>
 
+        <div class="exercises-container"> <!-- CONTENEDOR DE LOS EJERCICIOS -->
 
-  <form class="session-form">
+          <fieldset class="exercise" data-exercise="Planchas">
+            <legend>Sesión 8 planchas</legend>
 
-    <input type="date" id="date" required>
-    <select id="routine">
-      <option value="A">Full Body A</option>
-      <option value="B">Full Body B</option>
-    </select>
-
-    <!-- RUTINA A -->
-    <fieldset class="full-body-a">
-      <legend>Full Body A</legend>
-
-      <div class="exercises-container"> <!-- CONTENEDOR DE LOS EJERCICIOS -->
-
-        <fieldset class="exercise" data-exercise="Planchas">
-          <legend>Sesión 8 planchas</legend>
-
-          <div class="input-group">
-            <label for="planches-time">Duración (s)</label>
-            <input type="number" min="0" step="5" id="planches-time">
-          </div>
-
-          <div class="input-group">
-            <label for="planches-rest">Descanso (s)</label>
-            <input type="number" min="0" step="5" id="planches-rest">
-          </div>
-        </fieldset> <!-- EJERCICIO 1 -->
-
-        <fieldset class="exercise" data-exercise="Sentadilla Goblet">
-          <legend>Sentadilla Goblet</legend>
-
-          <div class="input-group">
-            <label for="goblet-series">Series</label>
-            <input type="number" min="1" id="goblet-series">
-          </div>
-          <div class="input-group">
-            <label for="goblet-reps">Repeticiones</label>
-            <input type="number" min="1" id="goblet-reps">
-          </div>
-          <div class="input-group">
-            <label for="goblet-rest">Descanso (s)</label>
-            <input type="number" min="0" step="5" id="goblet-rest">
-          </div>
-        </fieldset> <!-- EJERCICIO 2 -->
-
-        <fieldset class="exercise" data-exercise="Flexiones de Pecho">
-          <legend>Flexiones - Pies Elevados</legend>
-
-          <div class="input-group">
-            <label for="pushups-series">Series</label>
-            <input type="number" min="1" id="pushups-series">
-          </div>
-          <div class="input-group">
-            <label for="pushups-reps">Repeticiones</label>
-            <input type="number" min="1" id="pushups-reps">
-          </div>
-          <div class="input-group">
-            <label for="pushups-rest">Descanso (s)</label>
-            <input type="number" min="0" step="5" id="pushups-rest">
-          </div>
-        </fieldset> <!-- EJERCICIO 3 -->
-
-        <fieldset class="exercise" data-exercise="Remo con Mancuerna">
-          <legend>Remo con Mancuerna</legend>
-
-          <div class="input-group">
-            <label for="dumbbell-series">Series</label>
-            <input type="number" min="1" id="dumbbell-series">
-          </div>
-          <div class="input-group">
-            <label for="dumbbell-reps">Repeticiones</label>
-            <input type="number" min="1" id="dumbbell-reps">
-          </div>
-          <div class="input-group">
-            <label for="dumbbell-rest">Descanso (s)</label>
-            <input type="number" min="0" step="5" id="dumbbell-rest">
-          </div>
-        </fieldset> <!-- EJERCICIO 4 -->
-
-
-        <fieldset class="exercise" data-exercise="Curl de Bíceps">
-          <legend>Curl de Bíceps (Al Fallo)</legend>
-
-          <!-- Campo de descanso global para todo el ejercicio -->
-          <div class="exercise-global-settings">
-            <label for="biceps-rest">Descansos (s):</label>
-            <input type="number" min="0" step="5" id="biceps-rest" name="biceps_rest" value="90">
-          </div>
-
-          <div class="series-container">
-            <!-- Encabezados de las columnas -->
-            <div class="series-header" aria-hidden="true">
-              <span>Serie</span>
+            <div class="input-group">
+              <label for="planches-time">Duración (s)</label>
+              <input type="number" min="0" step="5" id="planches-time">
             </div>
 
-            <!-- Serie 1 -->
-            <div class="series-row" data-serie="1">
-              <span class="serie-number">#1</span>
+            <div class="input-group">
+              <label for="planches-rest">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="planches-rest">
+            </div>
+          </fieldset> <!-- EJERCICIO 1 -->
 
-              <div class="input-group">
-                <label for="biceps-s1-izq" class="sr-only">Reps Izquierdo - Serie 1</label>
-                <input type="number" min="1" id="biceps-s1-izq" name="biceps_s1_izq" placeholder="Izq">
-              </div>
+          <fieldset class="exercise" data-exercise="Sentadilla Goblet">
+            <legend>Sentadilla Goblet</legend>
 
-              <div class="input-group">
-                <label for="biceps-s1-der" class="sr-only">Reps Derecho - Serie 1</label>
-                <input type="number" min="1" id="biceps-s1-der" name="biceps_s1_der" placeholder="Der">
-              </div>
+            <div class="input-group">
+              <label for="goblet-series">Series</label>
+              <input type="number" min="1" id="goblet-series">
+            </div>
+            <div class="input-group">
+              <label for="goblet-reps">Repeticiones</label>
+              <input type="number" min="1" id="goblet-reps">
+            </div>
+            <div class="input-group">
+              <label for="goblet-rest">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="goblet-rest">
+            </div>
+          </fieldset> <!-- EJERCICIO 2 -->
+
+          <fieldset class="exercise" data-exercise="Flexiones de Pecho">
+            <legend>Flexiones - Pies Elevados</legend>
+
+            <div class="input-group">
+              <label for="pushups-series">Series</label>
+              <input type="number" min="1" id="pushups-series">
+            </div>
+            <div class="input-group">
+              <label for="pushups-reps">Repeticiones</label>
+              <input type="number" min="1" id="pushups-reps">
+            </div>
+            <div class="input-group">
+              <label for="pushups-rest">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="pushups-rest">
+            </div>
+          </fieldset> <!-- EJERCICIO 3 -->
+
+          <fieldset class="exercise" data-exercise="Remo con Mancuerna">
+            <legend>Remo con Mancuerna</legend>
+
+            <div class="input-group">
+              <label for="dumbbell-series">Series</label>
+              <input type="number" min="1" id="dumbbell-series">
+            </div>
+            <div class="input-group">
+              <label for="dumbbell-reps">Repeticiones</label>
+              <input type="number" min="1" id="dumbbell-reps">
+            </div>
+            <div class="input-group">
+              <label for="dumbbell-rest">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="dumbbell-rest">
+            </div>
+          </fieldset> <!-- EJERCICIO 4 -->
+
+
+          <fieldset class="exercise" data-exercise="Curl de Bíceps">
+            <legend>Curl de Bíceps (Al Fallo)</legend>
+
+            <!-- Campo de descanso global para todo el ejercicio -->
+            <div class="exercise-global-settings">
+              <label for="biceps-rest">Descansos (s):</label>
+              <input type="number" min="0" step="5" id="biceps-rest" name="biceps_rest" value="90">
             </div>
 
-            <!-- Serie 2 -->
-            <div class="series-row" data-serie="2">
-              <span class="serie-number">#2</span>
-
-              <div class="input-group">
-                <label for="biceps-s2-izq" class="sr-only">Reps Izquierdo - Serie 2</label>
-                <input type="number" min="1" id="biceps-s2-izq" name="biceps_s2_izq" placeholder="Izq">
+            <div class="series-container">
+              <!-- Encabezados de las columnas -->
+              <div class="series-header" aria-hidden="true">
+                <span>Serie</span>
               </div>
 
-              <div class="input-group">
-                <label for="biceps-s2-der" class="sr-only">Reps Derecho - Serie 2</label>
-                <input type="number" min="1" id="biceps-s2-der" name="biceps_s2_der" placeholder="Der">
+              <!-- Serie 1 -->
+              <div class="series-row" data-serie="1">
+                <span class="serie-number">#1</span>
+
+                <div class="input-group">
+                  <label for="biceps-s1-izq" class="sr-only">Reps Izquierdo - Serie 1</label>
+                  <input type="number" min="1" id="biceps-s1-izq" name="biceps_s1_izq" placeholder="Izq">
+                </div>
+
+                <div class="input-group">
+                  <label for="biceps-s1-der" class="sr-only">Reps Derecho - Serie 1</label>
+                  <input type="number" min="1" id="biceps-s1-der" name="biceps_s1_der" placeholder="Der">
+                </div>
               </div>
+
+              <!-- Serie 2 -->
+              <div class="series-row" data-serie="2">
+                <span class="serie-number">#2</span>
+
+                <div class="input-group">
+                  <label for="biceps-s2-izq" class="sr-only">Reps Izquierdo - Serie 2</label>
+                  <input type="number" min="1" id="biceps-s2-izq" name="biceps_s2_izq" placeholder="Izq">
+                </div>
+
+                <div class="input-group">
+                  <label for="biceps-s2-der" class="sr-only">Reps Derecho - Serie 2</label>
+                  <input type="number" min="1" id="biceps-s2-der" name="biceps_s2_der" placeholder="Der">
+                </div>
+              </div>
+
+              <!-- Serie 3 -->
+              <div class="series-row" data-serie="3">
+                <span class="serie-number">#3</span>
+
+                <div class="input-group">
+                  <label for="biceps-s3-izq" class="sr-only">Reps Izquierdo - Serie 3</label>
+                  <input type="number" min="1" id="biceps-s3-izq" name="biceps_s3_izq" placeholder="Izq">
+                </div>
+
+                <div class="input-group">
+                  <label for="biceps-s3-der" class="sr-only">Reps Derecho - Serie 3</label>
+                  <input type="number" min="1" id="biceps-s3-der" name="biceps_s3_der" placeholder="Der">
+                </div>
+              </div>
+
+              <!-- Serie 4 -->
+              <div class="series-row" data-serie="4">
+                <span class="serie-number">#4</span>
+
+                <div class="input-group">
+                  <label for="biceps-s4-izq" class="sr-only">Reps Izquierdo - Serie 4</label>
+                  <input type="number" min="1" id="biceps-s4-izq" name="biceps_s4_izq" placeholder="Izq">
+                </div>
+
+                <div class="input-group">
+                  <label for="biceps-s4-der" class="sr-only">Reps Derecho - Serie 4</label>
+                  <input type="number" min="1" id="biceps-s4-der" name="biceps_s4_der" placeholder="Der">
+                </div>
+              </div>
+
+            </div>
+          </fieldset> <!-- EJERCICIO 5 -->
+
+          <fieldset class="exercise" data-exercise="Fondos de Tríceps">
+            <legend>Fondos de Tríceps</legend>
+
+            <div class="input-group">
+              <label for="triceps-series">Series</label>
+              <input type="number" min="1" id="triceps-series">
+            </div>
+            <div class="input-group">
+              <label for="triceps-reps">Repeticiones</label>
+              <input type="number" min="1" id="triceps-reps">
+            </div>
+            <div class="input-group">
+              <label for="triceps-rest">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="triceps-rest">
+            </div>
+          </fieldset> <!-- EJERCICIO 6 -->
+        </div>
+      </fieldset>
+
+      <!-- RUTINA B -->
+      <fieldset class="full-body-b hidden">
+        <legend>Full Body B</legend>
+
+        <div class="exercises-container"> <!-- CONTENEDOR DE LOS EJERCICIOS -->
+
+          <fieldset class="exercise" data-exercise="Planchas">
+            <legend>Sesión 8 planchas</legend>
+
+            <div class="input-group">
+              <label for="planches-time">Duración (s)</label>
+              <input type="number" min="1" id="planches-time">
             </div>
 
-            <!-- Serie 3 -->
-            <div class="series-row" data-serie="3">
-              <span class="serie-number">#3</span>
-
-              <div class="input-group">
-                <label for="biceps-s3-izq" class="sr-only">Reps Izquierdo - Serie 3</label>
-                <input type="number" min="1" id="biceps-s3-izq" name="biceps_s3_izq" placeholder="Izq">
-              </div>
-
-              <div class="input-group">
-                <label for="biceps-s3-der" class="sr-only">Reps Derecho - Serie 3</label>
-                <input type="number" min="1" id="biceps-s3-der" name="biceps_s3_der" placeholder="Der">
-              </div>
+            <div class="input-group">
+              <label for="planches-rest">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="planches-rest">
             </div>
+          </fieldset> <!-- EJERCICIO 1 -->
 
-            <!-- Serie 4 -->
-            <div class="series-row" data-serie="4">
-              <span class="serie-number">#4</span>
+          <fieldset class="exercise" data-exercise="Sentadilla Búlgada">
+            <legend>Sentadilla Búlgada</legend>
 
-              <div class="input-group">
-                <label for="biceps-s4-izq" class="sr-only">Reps Izquierdo - Serie 4</label>
-                <input type="number" min="1" id="biceps-s4-izq" name="biceps_s4_izq" placeholder="Izq">
-              </div>
-
-              <div class="input-group">
-                <label for="biceps-s4-der" class="sr-only">Reps Derecho - Serie 4</label>
-                <input type="number" min="1" id="biceps-s4-der" name="biceps_s4_der" placeholder="Der">
-              </div>
+            <div class="input-group">
+              <label for="bulgarian-series">Series</label>
+              <input type="number" min="1" id="bulgarian-series">
             </div>
+            <div class="input-group">
+              <label for="bulgarian-reps">Repeticiones</label>
+              <input type="number" min="1" id="bulgarian-reps">
+            </div>
+            <div class="input-group">
+              <label for="bulgarian-rest">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="bulgarian-rest">
+            </div>
+          </fieldset> <!-- EJERCICIO 2 -->
 
-          </div>
-        </fieldset> <!-- EJERCICIO 5 -->
+          <fieldset class="exercise" data-exercise="Peso Muerto Rumano">
+            <legend>Peso Muerto Rumano Unilateral</legend>
 
-        <fieldset class="exercise" data-exercise="Fondos de Tríceps">
-          <legend>Fondos de Tríceps</legend>
+            <div class="input-group">
+              <label for="deadlift-series">Series</label>
+              <input type="number" min="1" id="deadlift-series">
+            </div>
+            <div class="input-group">
+              <label for="deadlift-reps">Repeticiones</label>
+              <input type="number" min="1" id="deadlift-reps">
+            </div>
+            <div class="input-group">
+              <label for="deadlift-rest">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="deadlift-rest">
+            </div>
+          </fieldset> <!-- EJERCICIO 3 -->
 
-          <div class="input-group">
-            <label for="triceps-series">Series</label>
-            <input type="number" min="1" id="triceps-series">
-          </div>
-          <div class="input-group">
-            <label for="triceps-reps">Repeticiones</label>
-            <input type="number" min="1" id="triceps-reps">
-          </div>
-          <div class="input-group">
-            <label for="triceps-rest">Descanso (s)</label>
-            <input type="number" min="0" step="5" id="triceps-rest">
-          </div>
-        </fieldset> <!-- EJERCICIO 6 -->
-      </div>
-    </fieldset>
+          <fieldset class="exercise" data-exercise="Elevación Lateral Hombros">
+            <legend>Elevación Lateral de Hombros</legend>
 
-    <!-- RUTINA B -->
-    <fieldset class="full-body-b">
-      <legend>Full Body B</legend>
+            <div class="input-group">
+              <label for="shoulder-series">Series</label>
+              <input type="number" min="1" id="shoulder-series">
+            </div>
+            <div class="input-group">
+              <label for="shoulder-reps">Repeticiones</label>
+              <input type="number" min="1" id="shoulder-reps">
+            </div>
+            <div class="input-group">
+              <label for="shoulder-rest">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="shoulder-rest">
+            </div>
+          </fieldset> <!-- EJERCICIO 4 -->
 
-      <div class="exercises-container"> <!-- CONTENEDOR DE LOS EJERCICIOS -->
+          <fieldset class="exercise" data-exercise="Bird Dog">
+            <legend>Bird Dog</legend>
 
-        <fieldset class="exercise" data-exercise="Planchas">
-          <legend>Sesión 8 planchas</legend>
+            <div class="input-group">
+              <label for="birddog-series">Series</label>
+              <input type="number" min="1" id="birddog-series">
+            </div>
+            <div class="input-group">
+              <label for="birddog-reps">Repeticiones</label>
+              <input type="number" min="1" id="birddog-reps">
+            </div>
+            <div class="input-group">
+              <label for="birddog-rest">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="birddog-rest">
+            </div>
+          </fieldset> <!-- EJERCICIO 5 -->
 
-          <div class="input-group">
-            <label for="planches-time">Duración (s)</label>
-            <input type="number" min="1" id="planches-time">
-          </div>
+          <fieldset class="exercise" data-exercise="Elevación de Piernas">
+            <legend>Elevación de Piernas</legend>
 
-          <div class="input-group">
-            <label for="planches-rest">Descanso (s)</label>
-            <input type="number" min="0" step="5" id="planches-rest">
-          </div>
-        </fieldset> <!-- EJERCICIO 1 -->
+            <div class="input-group">
+              <label for="elevation-series">Series</label>
+              <input type="number" min="1" id="elevation-series">
+            </div>
+            <div class="input-group">
+              <label for="elevation-reps">Repeticiones</label>
+              <input type="number" min="1" id="elevation-reps">
+            </div>
+            <div class="input-group">
+              <label for="elevation-rest">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="elevation-rest">
+            </div>
+          </fieldset> <!-- EJERCICIO 6 -->
+        </div>
+      </fieldset>
 
-        <fieldset class="exercise" data-exercise="Sentadilla Búlgada">
-          <legend>Sentadilla Búlgada</legend>
+      <input class="input-btn btn" type="button" value="Registrar">
+    </form>
+  </section>
 
-          <div class="input-group">
-            <label for="bulgarian-series">Series</label>
-            <input type="number" min="1" id="bulgarian-series">
-          </div>
-          <div class="input-group">
-            <label for="bulgarian-reps">Repeticiones</label>
-            <input type="number" min="1" id="bulgarian-reps">
-          </div>
-          <div class="input-group">
-            <label for="bulgarian-rest">Descanso (s)</label>
-            <input type="number" min="0" step="5" id="bulgarian-rest">
-          </div>
-        </fieldset> <!-- EJERCICIO 2 -->
-
-        <fieldset class="exercise" data-exercise="Peso Muerto Rumano">
-          <legend>Peso Muerto Rumano Unilateral</legend>
-
-          <div class="input-group">
-            <label for="deadlift-series">Series</label>
-            <input type="number" min="1" id="deadlift-series">
-          </div>
-          <div class="input-group">
-            <label for="deadlift-reps">Repeticiones</label>
-            <input type="number" min="1" id="deadlift-reps">
-          </div>
-          <div class="input-group">
-            <label for="deadlift-rest">Descanso (s)</label>
-            <input type="number" min="0" step="5" id="deadlift-rest">
-          </div>
-        </fieldset> <!-- EJERCICIO 3 -->
-
-        <fieldset class="exercise" data-exercise="Elevación Lateral Hombros">
-          <legend>Elevación Lateral de Hombros</legend>
-
-          <div class="input-group">
-            <label for="shoulder-series">Series</label>
-            <input type="number" min="1" id="shoulder-series">
-          </div>
-          <div class="input-group">
-            <label for="shoulder-reps">Repeticiones</label>
-            <input type="number" min="1" id="shoulder-reps">
-          </div>
-          <div class="input-group">
-            <label for="shoulder-rest">Descanso (s)</label>
-            <input type="number" min="0" step="5" id="shoulder-rest">
-          </div>
-        </fieldset> <!-- EJERCICIO 4 -->
-
-        <fieldset class="exercise" data-exercise="Bird Dog">
-          <legend>Bird Dog</legend>
-
-          <div class="input-group">
-            <label for="birddog-series">Series</label>
-            <input type="number" min="1" id="birddog-series">
-          </div>
-          <div class="input-group">
-            <label for="birddog-reps">Repeticiones</label>
-            <input type="number" min="1" id="birddog-reps">
-          </div>
-          <div class="input-group">
-            <label for="birddog-rest">Descanso (s)</label>
-            <input type="number" min="0" step="5" id="birddog-rest">
-          </div>
-        </fieldset> <!-- EJERCICIO 5 -->
-
-        <fieldset class="exercise" data-exercise="Elevación de Piernas">
-          <legend>Elevación de Piernas</legend>
-
-          <div class="input-group">
-            <label for="elevation-series">Series</label>
-            <input type="number" min="1" id="elevation-series">
-          </div>
-          <div class="input-group">
-            <label for="elevation-reps">Repeticiones</label>
-            <input type="number" min="1" id="elevation-reps">
-          </div>
-          <div class="input-group">
-            <label for="elevation-rest">Descanso (s)</label>
-            <input type="number" min="0" step="5" id="elevation-rest">
-          </div>
-        </fieldset> <!-- EJERCICIO 6 -->
-      </div>
-    </fieldset>
-
-    <input class="input-btn" type="button" value="Registrar">
-  </form>
   <script type="module" src="/src/main.ts"></script>
 </body>
 
