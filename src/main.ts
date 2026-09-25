@@ -3,8 +3,17 @@
 
 import "./style.css";
 
-// Obtener elementos
+// Obtener elementos.
 
+const addRoutineBtn = document.querySelector(".add-btn") as HTMLButtonElement;
+const closeModalBtn = document.querySelector(".close-btn") as HTMLButtonElement;
+const modalWindow = document.querySelector(".modal") as HTMLDivElement;
+
+const selectRoutineBtn = document.querySelector(".initial-btn") as HTMLButtonElement;
+const routine = document.querySelector("#routine") as HTMLSelectElement;
+
+const formA = document.querySelector(".full-body-a") as HTMLFieldSetElement;
+const formB = document.querySelector(".full-body-b") as HTMLFieldSetElement;
 
 
 
@@ -27,5 +36,41 @@ interface Session {
 };
 
 let sessions: Session[] = [];
+
+// VENTANA MODAL
+
+addRoutineBtn.addEventListener("click", (event: MouseEvent) => {
+  event.preventDefault();
+  modalWindow.classList.remove("hidden");
+})
+
+closeModalBtn.addEventListener("click", (event: MouseEvent) => {
+  event.preventDefault();
+  modalWindow.classList.add("hidden");
+})
+
+modalWindow.addEventListener("click", (event: MouseEvent) => {
+  event.preventDefault();
+  if (event.target == modalWindow) {
+    modalWindow.classList.add("hidden");
+  }
+})
+
+// SELECCIONAR FORMULARIO
+
+selectRoutineBtn.addEventListener("click", (event: MouseEvent) => {
+  event.preventDefault()
+  console.log(routine.value)
+  if (routine.value === "A") {
+    formB.classList.add("hidden");
+    formA.classList.remove("hidden");
+  }
+  else if (routine.value === "B") {
+    formA.classList.add("hidden");
+    formB.classList.remove("hidden");
+  }
+})
+
+
 
 
