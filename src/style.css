@@ -10,11 +10,14 @@
   --text-bold: #444546;
   --darker: #353535;
 
+  --main-red: #660000;
+  --light-red: #ffbaba;
+
   --bg-card: #beffd7;
 }
 
 body {
-  padding: 0 1.55rem;
+  padding: 0.5rem 1.55rem;
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
   color: var(--text);
@@ -79,7 +82,6 @@ input[type="button"] {
   height: 25rem;
   padding: 0.8rem 1rem;
   font-size: 0.95rem;
-  background-color: var(--bg-card);
 
   border-radius: 0.5rem;
 
@@ -92,7 +94,24 @@ input[type="button"] {
 
 .routine-name {
   font-size: 1.2rem;
-  color: var(--main-green);
+}
+
+.card-a {
+  background-color: var(--bg-card);
+
+  .routine-name {
+    color: var(--main-green);
+  }
+}
+
+
+
+.card-b {
+  background-color: var(--light-red);
+
+  .routine-name {
+    color: var(--main-red);
+  }
 }
 
 .routine-date {
@@ -222,6 +241,42 @@ input[type="button"] {
   border: 0.1rem solid #6e737a;
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.initial-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.session-form {
+  max-width: 30rem;
+  height: 80vh;
+  min-width: 90vw;
+  overflow-y: scroll;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+
+  position: relative;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
 .exercise {
   border: 2px solid #e2e8f0;
   border-radius: 8px;
@@ -229,6 +284,10 @@ input[type="button"] {
   margin-bottom: 2rem;
   background-color: #ffffff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem 0;
 }
 
 /* Título del ejercicio (Legend) */
@@ -246,7 +305,6 @@ input[type="button"] {
   gap: 0.75rem;
   margin-bottom: 1.25rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #f1f5f9;
 }
 
 .exercise-global-settings label {
@@ -298,8 +356,6 @@ input[type="button"] {
   min-width: 1.5rem;
 }
 
-
-
 .series-table {
   width: 100%;
   border-collapse: collapse;
@@ -349,11 +405,9 @@ input[type="button"] {
 
 /* Contenedor del input (por si necesitas agregar iconos o estilos extra) */
 .input-group {
-  display: inline-block;
   display: flex;
-  justify-content: flex-end;
-  gap: 2rem;
   align-items: center;
+  justify-content: space-between;
 }
 
 /* Hacer que los inputs de las celdas ocupen el ancho adecuado */
@@ -374,10 +428,53 @@ input[type="button"] {
   border: 0;
 }
 
-.input-btn {
-  padding: 0.5rem;
+.btn {
+  font-weight: 600;
+
+  padding: 0.7rem 0.6rem;
+  border-radius: 0.4rem;
+  border: none;
+  background-color: var(--bg-card);
+  color: var(--main-green);
+
+
+  transition: background-color 0.3s ease;
 }
 
-.session-form {
+.btn:hover {
+  color: var(--bg-card);
+  background-color: var(--main-green);
+  cursor: pointer;
+}
+
+.add-btn {
+  background-color: var(--light-red);
+  color: var(--main-red);
+
+  &:hover {
+    background-color: var(--main-red);
+    color: var(--light-red);
+  }
+}
+
+.hidden {
+  opacity: 0;
   display: none;
+  pointer-events: none;
+}
+
+.close-btn {
+  height: 2.5rem;
+  width: 2.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+
+  border-radius: 50%;
+  background-color: rgb(161, 0, 0);
+  color: white;
+  border: none;
+  cursor: pointer;
 }
