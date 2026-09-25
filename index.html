@@ -11,148 +11,567 @@
 
 <body>
 
+  <header class="header">
+    <h1 class="project-title">Routine<span>ly</span></h1>
+    <button class="add-btn">Agregar Sesión</button>
+  </header>
+
   <main class="main">
-    <section class="title">
-      <h1>Routin<span>ly</span></h1>
-    </section>
+    <section class="graph"></section>
 
-    <section class="graph">
-      <p>SOY UN GRÁFICO</p>
-    </section>
+    <!-- RECORD -->
+    <section class="record">
 
-    <section class="form">
-      <form>
-        <legend>Ingresa tu rutina</legend>
-        <fieldset class="first-selection">
-          <div class="date">
-            <label for="ex-date">Fecha de la rutina</label>
-            <input type="date" name="ex-date" class="date-input">
-          </div>
-          <select id="routine">
-            <option value="A">A</option>
-            <option value="B">B</option>
-          </select>
+      <div class="routine-card">
 
-        </fieldset>
+        <header class="card-header">
+          <h4 class="routine-name">Full Body A</h4>
+          <p class="routine-date">21/09/2026</p>
+        </header>
 
-        <fieldset class="exercises">
-
-          <div class="exercise">
-            <h4 class="input-title">Planchas</h4>
-            <div class="inputs">
-              <input type="number" id="planches-ex">
-              <label for="planches-ex">(seg) Acción</label>
-              <input type="number" id="planches-rest">
-              <label for="planches-rest"> (seg) Descanso</label>
+        <section class="card-main">
+          <header class="table-header">
+            <p class="table-header__title">Ejercicio</p>
+            <p class="table-header__title">Desglose</p>
+          </header>
+          <main class="table-contain">
+            <div class="exercise-info">
+              <p class="exercise-name">Planchas</p>
+              <p class="reps">40x12 seg</p>
             </div>
-          </div>
-
-          <div class="exercise">
-            <h4 class="input-title">Sentadilla Goblet</h4>
-            <div class="inputs">
-              <div class="goblet-series">
-                <input type="number" id="goblet-series">
-                <label for="goblet-series">Series</label>
-              </div>
-              <div class="goblet-reps">
-                <input type="number" id="goblet-reps">
-                <label for="goblet-reps">Repeticiones</label>
-              </div>
-              <div class="goblet-rest">
-                <input type="number" id="goblet-rest">
-                <label for="goblet-rest">(seg) Descanso</label>
+            <div class="exercise-info">
+              <p class="exercise-name">Sentadilla Goblet</p>
+              <p class="reps">16 16 16 16</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Flexiones</p>
+              <p class="reps">15 8 6 3</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Remo c/ Mancuernas</p>
+              <p class="reps">12 12 12 12</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Curl de Bíceps</p>
+              <div class="curl-info">
+                <p class="left reps">I: 24 11 6 5</p>
+                <p class="right reps">D: 25 12 8 6</p>
               </div>
             </div>
-          </div>
-
-          <div class="exercise">
-            <h4 class="input-title">Flexiones</h4>
-            <div class="inputs">
-              <div class="pushups-series">
-                <input type="number" name="pushups" id="pushups-series">
-                <label for="pushups-series">Series</label>
-              </div>
-              <div class="pushups-reps">
-                <input type="number" name="pushups" id="pushups-reps">
-                <label for="pushups-reps">Repeticiones</label>
-              </div>
-              <div class="pushups-rest">
-                <input type="number" name="pushups" id="pushups-rest">
-                <label for="pushups-rest">(seg) Descanso</label>
-              </div>
-
+            <div class="exercise-info">
+              <p class="exercise-name">Fondos de Tríceps</p>
+              <p class="reps">15 15 15 15</p>
             </div>
-          </div>
+          </main>
+        </section> <!-- Card Content-->
+      </div> <!-- CARD -->
 
-          <div class="exercise">
-            <h4 class="input-title">Remo con Mancuernas</h4>
-            <div class="inputs">
-              <div class="dumbbell-series">
-                <input type="number" name="dumbbell" id="dumbbell-series">
-                <label for="dumbbell-series">Series</label>
-              </div>
-              <div class="dumbbell-reps">
-                <input type="number" name="dumbbell" id="dumbbell-reps">
-                <label for="dumbbell-reps">Repeticiones</label>
-              </div>
-              <div class="dumbbell-rest">
-                <input type="number" name="dumbbell" id="dumbbell-rest">
-                <label for="dumbbell-rest">(seg) Descanso</label>
+      <div class="routine-card">
+
+        <header class="card-header">
+          <h4 class="routine-name">Full Body B</h4>
+          <p class="routine-date">23/09/2026</p>
+        </header>
+
+        <section class="card-main">
+          <header class="table-header">
+            <p class="table-header__title">Ejercicio</p>
+            <p class="table-header__title">Desglose</p>
+          </header>
+          <main class="table-contain">
+            <div class="exercise-info">
+              <p class="exercise-name">Planchas</p>
+              <p class="reps">40x12 seg</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Sentadilla Búlgara</p>
+              <p class="reps">12 12 12</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Peso Muerto Rumano</p>
+              <p class="reps">8 8 8</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Elev. Lateral Hombro</p>
+              <p class="reps">12 12 12</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Bird Dog</p>
+              <p class="reps">12 12 12</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Elev. Piernas</p>
+              <p class="reps">15 15 15</p>
+            </div>
+          </main>
+        </section> <!-- Card Content-->
+      </div> <!-- CARD -->
+
+      <div class="routine-card">
+
+        <header class="card-header">
+          <h4 class="routine-name">Full Body A</h4>
+          <p class="routine-date">25/09/2026</p>
+        </header>
+
+        <section class="card-main">
+          <header class="table-header">
+            <p class="table-header__title">Ejercicio</p>
+            <p class="table-header__title">Desglose</p>
+          </header>
+          <main class="table-contain">
+            <div class="exercise-info">
+              <p class="exercise-name">Planchas</p>
+              <p class="reps">40x12 seg</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Sentadilla Goblet</p>
+              <p class="reps">16 16 16 16</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Flexiones</p>
+              <p class="reps">15 8 6 3</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Remo c/ Mancuernas</p>
+              <p class="reps">12 12 12 12</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Curl de Bíceps</p>
+              <div class="curl-info">
+                <p class="left reps">I: 24 11 6 5</p>
+                <p class="right reps">D: 25 12 8 6</p>
               </div>
             </div>
-          </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Fondos de Tríceps</p>
+              <p class="reps">15 15 15 15</p>
+            </div>
+          </main>
+        </section> <!-- Card Content-->
+      </div> <!-- CARD -->
+      <div class="routine-card">
 
-          <div class="exercise">
-            <h4 class="input-title">Curl de Bíceps</h4>
-            <div class="inputs">
-              <div class="curl-series">
-                <input type="number" name="curl" id="curl-series">
-                <label for="curl-series">Series</label>
-              </div>
-              <div class="curl-right">
-                <p class="curl-arm">Brazo Derecho</p>
-                <input type="number" name="curl" id="curl-right__1">
-                <input type="number" name="curl" id="curl-right__2">
-                <input type="number" name="curl" id="curl-right__3">
-                <input type="number" name="curl" id="curl-right__4">
-              </div>
-              <div class="curl-left">
-                <p class="curl-arm">Brazo Izquierdo</p>
-                <input type="number" name="curl" id="curl-left__1">
-                <input type="number" name="curl" id="curl-left__2">
-                <input type="number" name="curl" id="curl-left__3">
-                <input type="number" name="curl" id="curl-left__4">
+        <header class="card-header">
+          <h4 class="routine-name">Full Body A</h4>
+          <p class="routine-date">21/09/2026</p>
+        </header>
+
+        <section class="card-main">
+          <header class="table-header">
+            <p class="table-header__title">Ejercicio</p>
+            <p class="table-header__title">Desglose</p>
+          </header>
+          <main class="table-contain">
+            <div class="exercise-info">
+              <p class="exercise-name">Planchas</p>
+              <p class="reps">40x12 seg</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Sentadilla Goblet</p>
+              <p class="reps">16 16 16 16</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Flexiones</p>
+              <p class="reps">15 8 6 3</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Remo c/ Mancuernas</p>
+              <p class="reps">12 12 12 12</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Curl de Bíceps</p>
+              <div class="curl-info">
+                <p class="left reps">I: 24 11 6 5</p>
+                <p class="right reps">D: 25 12 8 6</p>
               </div>
             </div>
-          </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Fondos de Tríceps</p>
+              <p class="reps">15 15 15 15</p>
+            </div>
+          </main>
+        </section> <!-- Card Content-->
+      </div> <!-- CARD -->
+      <div class="routine-card">
 
-          <div class="exercise">
-            <h4 class="input-title">Fondos de tríceps</h4>
-            <div class="inputs">
-              <div class="triceps-series">
-                <input type="number" name="triceps" id="triceps-series">
-                <label for="triceps-series">Series</label>
-              </div>
-              <div class="triceps-reps">
-                <input type="number" name="triceps" id="triceps-reps">
-                <label for="triceps-reps">Repeticiones</label>
-              </div>
-              <div class="triceps-rest">
-                <input type="number" name="triceps" id="triceps-rest">
-                <label for="triceps-rest">(seg) Descanso</label>
+        <header class="card-header">
+          <h4 class="routine-name">Full Body A</h4>
+          <p class="routine-date">21/09/2026</p>
+        </header>
+
+        <section class="card-main">
+          <header class="table-header">
+            <p class="table-header__title">Ejercicio</p>
+            <p class="table-header__title">Desglose</p>
+          </header>
+          <main class="table-contain">
+            <div class="exercise-info">
+              <p class="exercise-name">Planchas</p>
+              <p class="reps">40x12 seg</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Sentadilla Goblet</p>
+              <p class="reps">16 16 16 16</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Flexiones</p>
+              <p class="reps">15 8 6 3</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Remo c/ Mancuernas</p>
+              <p class="reps">12 12 12 12</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Curl de Bíceps</p>
+              <div class="curl-info">
+                <p class="left reps">I: 24 11 6 5</p>
+                <p class="right reps">D: 25 12 8 6</p>
               </div>
             </div>
-          </div>
-          <button type="button" class="submit-btn">Seleccionar</button>
-        </fieldset>
-      </form>
-    </section>
+            <div class="exercise-info">
+              <p class="exercise-name">Fondos de Tríceps</p>
+              <p class="reps">15 15 15 15</p>
+            </div>
+          </main>
+        </section> <!-- Card Content-->
+      </div> <!-- CARD -->
+      <div class="routine-card">
 
-    <section class="summary">
-      <P>SOY EL RESUMEN EN TEXTO</P>
+        <header class="card-header">
+          <h4 class="routine-name">Full Body A</h4>
+          <p class="routine-date">21/09/2026</p>
+        </header>
+
+        <section class="card-main">
+          <header class="table-header">
+            <p class="table-header__title">Ejercicio</p>
+            <p class="table-header__title">Desglose</p>
+          </header>
+          <main class="table-contain">
+            <div class="exercise-info">
+              <p class="exercise-name">Planchas</p>
+              <p class="reps">40x12 seg</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Sentadilla Goblet</p>
+              <p class="reps">16 16 16 16</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Flexiones</p>
+              <p class="reps">15 8 6 3</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Remo c/ Mancuernas</p>
+              <p class="reps">12 12 12 12</p>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Curl de Bíceps</p>
+              <div class="curl-info">
+                <p class="left reps">I: 24 11 6 5</p>
+                <p class="right reps">D: 25 12 8 6</p>
+              </div>
+            </div>
+            <div class="exercise-info">
+              <p class="exercise-name">Fondos de Tríceps</p>
+              <p class="reps">15 15 15 15</p>
+            </div>
+          </main>
+        </section> <!-- Card Content-->
+      </div> <!-- CARD -->
     </section>
   </main>
 
+
+
+
+
+  <form class="session-form">
+
+    <input type="date" id="date" required>
+    <select id="routine">
+      <option value="A">Full Body A</option>
+      <option value="B">Full Body B</option>
+    </select>
+
+    <!-- RUTINA A -->
+    <fieldset class="full-body-a">
+      <legend>Full Body A</legend>
+
+      <div class="exercises-container"> <!-- CONTENEDOR DE LOS EJERCICIOS -->
+
+        <fieldset class="exercise" data-exercise="Planchas">
+          <legend>Sesión 8 planchas</legend>
+
+          <div class="input-group">
+            <label for="planches-time">Duración (s)</label>
+            <input type="number" min="0" step="5" id="planches-time">
+          </div>
+
+          <div class="input-group">
+            <label for="planches-rest">Descanso (s)</label>
+            <input type="number" min="0" step="5" id="planches-rest">
+          </div>
+        </fieldset> <!-- EJERCICIO 1 -->
+
+        <fieldset class="exercise" data-exercise="Sentadilla Goblet">
+          <legend>Sentadilla Goblet</legend>
+
+          <div class="input-group">
+            <label for="goblet-series">Series</label>
+            <input type="number" min="1" id="goblet-series">
+          </div>
+          <div class="input-group">
+            <label for="goblet-reps">Repeticiones</label>
+            <input type="number" min="1" id="goblet-reps">
+          </div>
+          <div class="input-group">
+            <label for="goblet-rest">Descanso (s)</label>
+            <input type="number" min="0" step="5" id="goblet-rest">
+          </div>
+        </fieldset> <!-- EJERCICIO 2 -->
+
+        <fieldset class="exercise" data-exercise="Flexiones de Pecho">
+          <legend>Flexiones - Pies Elevados</legend>
+
+          <div class="input-group">
+            <label for="pushups-series">Series</label>
+            <input type="number" min="1" id="pushups-series">
+          </div>
+          <div class="input-group">
+            <label for="pushups-reps">Repeticiones</label>
+            <input type="number" min="1" id="pushups-reps">
+          </div>
+          <div class="input-group">
+            <label for="pushups-rest">Descanso (s)</label>
+            <input type="number" min="0" step="5" id="pushups-rest">
+          </div>
+        </fieldset> <!-- EJERCICIO 3 -->
+
+        <fieldset class="exercise" data-exercise="Remo con Mancuerna">
+          <legend>Remo con Mancuerna</legend>
+
+          <div class="input-group">
+            <label for="dumbbell-series">Series</label>
+            <input type="number" min="1" id="dumbbell-series">
+          </div>
+          <div class="input-group">
+            <label for="dumbbell-reps">Repeticiones</label>
+            <input type="number" min="1" id="dumbbell-reps">
+          </div>
+          <div class="input-group">
+            <label for="dumbbell-rest">Descanso (s)</label>
+            <input type="number" min="0" step="5" id="dumbbell-rest">
+          </div>
+        </fieldset> <!-- EJERCICIO 4 -->
+
+
+        <fieldset class="exercise" data-exercise="Curl de Bíceps">
+          <legend>Curl de Bíceps (Al Fallo)</legend>
+
+          <!-- Campo de descanso global para todo el ejercicio -->
+          <div class="exercise-global-settings">
+            <label for="biceps-rest">Descansos (s):</label>
+            <input type="number" min="0" step="5" id="biceps-rest" name="biceps_rest" value="90">
+          </div>
+
+          <div class="series-container">
+            <!-- Encabezados de las columnas -->
+            <div class="series-header" aria-hidden="true">
+              <span>Serie</span>
+            </div>
+
+            <!-- Serie 1 -->
+            <div class="series-row" data-serie="1">
+              <span class="serie-number">#1</span>
+
+              <div class="input-group">
+                <label for="biceps-s1-izq" class="sr-only">Reps Izquierdo - Serie 1</label>
+                <input type="number" min="1" id="biceps-s1-izq" name="biceps_s1_izq" placeholder="Izq">
+              </div>
+
+              <div class="input-group">
+                <label for="biceps-s1-der" class="sr-only">Reps Derecho - Serie 1</label>
+                <input type="number" min="1" id="biceps-s1-der" name="biceps_s1_der" placeholder="Der">
+              </div>
+            </div>
+
+            <!-- Serie 2 -->
+            <div class="series-row" data-serie="2">
+              <span class="serie-number">#2</span>
+
+              <div class="input-group">
+                <label for="biceps-s2-izq" class="sr-only">Reps Izquierdo - Serie 2</label>
+                <input type="number" min="1" id="biceps-s2-izq" name="biceps_s2_izq" placeholder="Izq">
+              </div>
+
+              <div class="input-group">
+                <label for="biceps-s2-der" class="sr-only">Reps Derecho - Serie 2</label>
+                <input type="number" min="1" id="biceps-s2-der" name="biceps_s2_der" placeholder="Der">
+              </div>
+            </div>
+
+            <!-- Serie 3 -->
+            <div class="series-row" data-serie="3">
+              <span class="serie-number">#3</span>
+
+              <div class="input-group">
+                <label for="biceps-s3-izq" class="sr-only">Reps Izquierdo - Serie 3</label>
+                <input type="number" min="1" id="biceps-s3-izq" name="biceps_s3_izq" placeholder="Izq">
+              </div>
+
+              <div class="input-group">
+                <label for="biceps-s3-der" class="sr-only">Reps Derecho - Serie 3</label>
+                <input type="number" min="1" id="biceps-s3-der" name="biceps_s3_der" placeholder="Der">
+              </div>
+            </div>
+
+            <!-- Serie 4 -->
+            <div class="series-row" data-serie="4">
+              <span class="serie-number">#4</span>
+
+              <div class="input-group">
+                <label for="biceps-s4-izq" class="sr-only">Reps Izquierdo - Serie 4</label>
+                <input type="number" min="1" id="biceps-s4-izq" name="biceps_s4_izq" placeholder="Izq">
+              </div>
+
+              <div class="input-group">
+                <label for="biceps-s4-der" class="sr-only">Reps Derecho - Serie 4</label>
+                <input type="number" min="1" id="biceps-s4-der" name="biceps_s4_der" placeholder="Der">
+              </div>
+            </div>
+
+          </div>
+        </fieldset> <!-- EJERCICIO 5 -->
+
+        <fieldset class="exercise" data-exercise="Fondos de Tríceps">
+          <legend>Fondos de Tríceps</legend>
+
+          <div class="input-group">
+            <label for="triceps-series">Series</label>
+            <input type="number" min="1" id="triceps-series">
+          </div>
+          <div class="input-group">
+            <label for="triceps-reps">Repeticiones</label>
+            <input type="number" min="1" id="triceps-reps">
+          </div>
+          <div class="input-group">
+            <label for="triceps-rest">Descanso (s)</label>
+            <input type="number" min="0" step="5" id="triceps-rest">
+          </div>
+        </fieldset> <!-- EJERCICIO 6 -->
+      </div>
+    </fieldset>
+
+    <!-- RUTINA B -->
+    <fieldset class="full-body-b">
+      <legend>Full Body B</legend>
+
+      <div class="exercises-container"> <!-- CONTENEDOR DE LOS EJERCICIOS -->
+
+        <fieldset class="exercise" data-exercise="Planchas">
+          <legend>Sesión 8 planchas</legend>
+
+          <div class="input-group">
+            <label for="planches-time">Duración (s)</label>
+            <input type="number" min="1" id="planches-time">
+          </div>
+
+          <div class="input-group">
+            <label for="planches-rest">Descanso (s)</label>
+            <input type="number" min="0" step="5" id="planches-rest">
+          </div>
+        </fieldset> <!-- EJERCICIO 1 -->
+
+        <fieldset class="exercise" data-exercise="Sentadilla Búlgada">
+          <legend>Sentadilla Búlgada</legend>
+
+          <div class="input-group">
+            <label for="bulgarian-series">Series</label>
+            <input type="number" min="1" id="bulgarian-series">
+          </div>
+          <div class="input-group">
+            <label for="bulgarian-reps">Repeticiones</label>
+            <input type="number" min="1" id="bulgarian-reps">
+          </div>
+          <div class="input-group">
+            <label for="bulgarian-rest">Descanso (s)</label>
+            <input type="number" min="0" step="5" id="bulgarian-rest">
+          </div>
+        </fieldset> <!-- EJERCICIO 2 -->
+
+        <fieldset class="exercise" data-exercise="Peso Muerto Rumano">
+          <legend>Peso Muerto Rumano Unilateral</legend>
+
+          <div class="input-group">
+            <label for="deadlift-series">Series</label>
+            <input type="number" min="1" id="deadlift-series">
+          </div>
+          <div class="input-group">
+            <label for="deadlift-reps">Repeticiones</label>
+            <input type="number" min="1" id="deadlift-reps">
+          </div>
+          <div class="input-group">
+            <label for="deadlift-rest">Descanso (s)</label>
+            <input type="number" min="0" step="5" id="deadlift-rest">
+          </div>
+        </fieldset> <!-- EJERCICIO 3 -->
+
+        <fieldset class="exercise" data-exercise="Elevación Lateral Hombros">
+          <legend>Elevación Lateral de Hombros</legend>
+
+          <div class="input-group">
+            <label for="shoulder-series">Series</label>
+            <input type="number" min="1" id="shoulder-series">
+          </div>
+          <div class="input-group">
+            <label for="shoulder-reps">Repeticiones</label>
+            <input type="number" min="1" id="shoulder-reps">
+          </div>
+          <div class="input-group">
+            <label for="shoulder-rest">Descanso (s)</label>
+            <input type="number" min="0" step="5" id="shoulder-rest">
+          </div>
+        </fieldset> <!-- EJERCICIO 4 -->
+
+        <fieldset class="exercise" data-exercise="Bird Dog">
+          <legend>Bird Dog</legend>
+
+          <div class="input-group">
+            <label for="birddog-series">Series</label>
+            <input type="number" min="1" id="birddog-series">
+          </div>
+          <div class="input-group">
+            <label for="birddog-reps">Repeticiones</label>
+            <input type="number" min="1" id="birddog-reps">
+          </div>
+          <div class="input-group">
+            <label for="birddog-rest">Descanso (s)</label>
+            <input type="number" min="0" step="5" id="birddog-rest">
+          </div>
+        </fieldset> <!-- EJERCICIO 5 -->
+
+        <fieldset class="exercise" data-exercise="Elevación de Piernas">
+          <legend>Elevación de Piernas</legend>
+
+          <div class="input-group">
+            <label for="elevation-series">Series</label>
+            <input type="number" min="1" id="elevation-series">
+          </div>
+          <div class="input-group">
+            <label for="elevation-reps">Repeticiones</label>
+            <input type="number" min="1" id="elevation-reps">
+          </div>
+          <div class="input-group">
+            <label for="elevation-rest">Descanso (s)</label>
+            <input type="number" min="0" step="5" id="elevation-rest">
+          </div>
+        </fieldset> <!-- EJERCICIO 6 -->
+      </div>
+    </fieldset>
+
+    <input class="input-btn" type="button" value="Registrar">
+  </form>
   <script type="module" src="/src/main.ts"></script>
 </body>
 
