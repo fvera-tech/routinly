@@ -294,7 +294,7 @@
           <option value="A">Full Body A</option>
           <option value="B">Full Body B</option>
         </select>
-        <button class="initial-btn btn">Seleccionar</button>
+        <button type="button" class="initial-btn btn">Seleccionar</button>
       </fieldset>
 
 
@@ -308,13 +308,13 @@
             <legend>Sesión 8 planchas</legend>
 
             <div class="input-group">
-              <label for="planches-time">Duración (s)</label>
-              <input type="number" min="0" step="5" id="planches-time">
+              <label for="planches-time-a">Duración (s)</label>
+              <input type="number" min="0" step="5" id="planches-time-a">
             </div>
 
             <div class="input-group">
-              <label for="planches-rest">Descanso (s)</label>
-              <input type="number" min="0" step="5" id="planches-rest">
+              <label for="planches-rest-a">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="planches-rest-a">
             </div>
           </fieldset> <!-- EJERCICIO 1 -->
 
@@ -339,17 +339,22 @@
             <legend>Flexiones - Pies Elevados</legend>
 
             <div class="input-group">
+              <label for="pushups-rest">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="pushups-rest">
+            </div>
+
+            <div class="input-group">
               <label for="pushups-series">Series</label>
               <input type="number" min="1" id="pushups-series">
             </div>
             <div class="input-group">
               <label for="pushups-reps">Repeticiones</label>
-              <input type="number" min="1" id="pushups-reps">
+              <input type="number" min="1" id="pushups-reps-1">
+              <input type="number" min="1" id="pushups-reps-2">
+              <input type="number" min="1" id="pushups-reps-3">
+              <input type="number" min="1" id="pushups-reps-4">
             </div>
-            <div class="input-group">
-              <label for="pushups-rest">Descanso (s)</label>
-              <input type="number" min="0" step="5" id="pushups-rest">
-            </div>
+
           </fieldset> <!-- EJERCICIO 3 -->
 
           <fieldset class="exercise" data-exercise="Remo con Mancuerna">
@@ -465,6 +470,7 @@
             </div>
           </fieldset> <!-- EJERCICIO 6 -->
         </div>
+        <input class="input-btn-a btn" type="button" value="Registrar">
       </fieldset>
 
       <!-- RUTINA B -->
@@ -477,13 +483,13 @@
             <legend>Sesión 8 planchas</legend>
 
             <div class="input-group">
-              <label for="planches-time">Duración (s)</label>
-              <input type="number" min="1" id="planches-time">
+              <label for="planches-time-b">Duración (s)</label>
+              <input type="number" min="1" id="planches-time-b">
             </div>
 
             <div class="input-group">
-              <label for="planches-rest">Descanso (s)</label>
-              <input type="number" min="0" step="5" id="planches-rest">
+              <label for="planches-rest-b">Descanso (s)</label>
+              <input type="number" min="0" step="5" id="planches-rest-b">
             </div>
           </fieldset> <!-- EJERCICIO 1 -->
 
@@ -572,9 +578,10 @@
             </div>
           </fieldset> <!-- EJERCICIO 6 -->
         </div>
+        <input class="input-btn-b btn" type="button" value="Registrar">
       </fieldset>
 
-      <input class="input-btn btn" type="button" value="Registrar">
+
     </form>
   </section>
 
