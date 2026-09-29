@@ -5,3 +5,5 @@ Es un proyecto de uso personal que me desafía a profundizar mi conocimiento al 
 Está hecho con **Typescript** a través de **Vite**
 
 ![Bosquejo Inicial](./src/assets/primer-bosquejo.png)
+
+![Bosquejo Final](./src/assets/boceto-final.png)
