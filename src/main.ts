@@ -93,21 +93,23 @@ function repsToArray(reps: number, series: number) {
   return result
 }
 
-function curlsToArray(series: number): Serie[] {
-
-  let result: Serie[] = []
-
-
-  console.log(result)
-}
-
 function createListOfExercises(...exercises: Exercise[]): Exercise[] {
   return exercises;
 }
 
+function saveToStorage(sessions: Session[]): void {
+  localStorage.setItem("sessions", JSON.stringify(sessions));
+}
+
+function loadFromStorage(): Session[] {
+  const save = localStorage.getItem("sessions");
+  if (save === null) return [];
+  return JSON.parse(save) as Session[];
+}
+
 // Se definen las reglas de los datos a almacenar.
 
-type Serie = number | { left: number; right: number } | Number[]
+type Serie = number | { left: number; right: number } | number[]
 
 interface RepsExercise {
   type: "reps";
@@ -133,7 +135,7 @@ interface Session {
   exercises: Exercise[];
 };
 
-let sessions: Session[] = [];
+let sessions: Session[] = loadFromStorage();
 
 // VENTANA MODAL
 
@@ -172,8 +174,8 @@ selectRoutineBtn.addEventListener("click", (event: MouseEvent) => {
 // Registrar rutinas
 
 inputBtnA.addEventListener("click", () => {
-  const routineDate: String = dateInput.value;
-  const routineType: String = routine.value;
+  const routineDate: string = dateInput.value;
+  const routineType: string = routine.value;
 
   const planches: TimeExercise = {
     type: "time",
@@ -208,7 +210,7 @@ inputBtnA.addEventListener("click", () => {
 
   const curls: RepsExercise = {
     type: "reps",
-    name: "Remo con Mancuerna",
+    name: "Curl de Bíceps",
     series: [
       { left: curlLeft1.valueAsNumber, right: curlRight1.valueAsNumber },
       { left: curlLeft2.valueAsNumber, right: curlRight2.valueAsNumber },
@@ -221,19 +223,21 @@ inputBtnA.addEventListener("click", () => {
 
   const triceps: RepsExercise = {
     type: "reps",
-    name: "Remo con Mancuerna",
+    name: "Fondo de Tríceps",
     series: repsToArray(tricepsReps.valueAsNumber, tricepsSeries.valueAsNumber),
     weight: 0,
     rest: tricepsRest.valueAsNumber,
   }
 
   const routineResults: Session = {
-    id: Date.now() + Math.floor(Math.random()),
+    id: Date.now() + Math.floor(Math.random() * 50),
     date: routineDate,
     routine: routineType,
     exercises: createListOfExercises(planches, goblet, pushups, dumbbell, curls, triceps),
   }
-  console.log(routineResults)
+
+  sessions.push(routineResults);
+  saveToStorage(sessions)
 
   form.reset();
 
@@ -291,13 +295,15 @@ inputBtnB.addEventListener("click", () => {
   }
 
   const routineResults: Session = {
-    id: Date.now() + Math.floor(Math.random()),
+    id: Date.now() + Math.floor(Math.random() * 50),
     date: routineDate,
     routine: routineType,
     exercises: createListOfExercises(planches, bulgarian, deadlift, shoulder, birdDog, elevation),
   }
 
-  console.log(routineResults)
+  sessions.push(routineResults);
+  saveToStorage(sessions)
+
   form.reset();
 
 })
