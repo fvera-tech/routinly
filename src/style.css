@@ -478,3 +478,63 @@ input[type="button"] {
   border: none;
   cursor: pointer;
 }
+
+/* ---- AGREGADOS: historial dinámico, errores, avisos ---- */
+.form-error {
+  position: sticky;
+  bottom: 0;
+  margin: 0;
+  padding: 0.6rem;
+  border-radius: 0.4rem;
+  background: var(--light-red);
+  color: var(--main-red);
+  font-weight: 600;
+}
+
+.form-error:empty {
+  display: none;
+}
+
+.delete-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.empty {
+  text-align: center;
+  color: var(--text);
+}
+
+.more-btn {
+  display: block;
+  margin: 1.5rem auto;
+}
+
+.notice {
+  margin: 0 auto 0.5rem;
+  padding: 0.6rem 1rem;
+  max-width: 30rem;
+  border-radius: 0.4rem;
+  background: #fff3cd;
+  color: #664d03;
+}
+
+.history-box {
+  position: relative;
+  width: 90vw;
+  max-width: 40rem;
+  height: 80vh;
+  overflow-y: auto;
+  background: white;
+  border-radius: 0.5rem;
+  padding: 4.5rem 1rem 1rem;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
