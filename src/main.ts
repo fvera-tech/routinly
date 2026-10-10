@@ -1,315 +1,188 @@
-
-// IMPORTS
-
 import "./style.css";
 
-// Obtener elementos.
-
-const form = document.querySelector(".session-form") as HTMLFormElement
-
-const addRoutineBtn = document.querySelector(".add-btn") as HTMLButtonElement;
-const closeModalBtn = document.querySelector(".close-btn") as HTMLButtonElement;
-const modalWindow = document.querySelector(".modal") as HTMLDivElement;
-
-const dateInput = document.querySelector("#date") as HTMLInputElement;
-const selectRoutineBtn = document.querySelector(".initial-btn") as HTMLButtonElement;
-const routine = document.querySelector("#routine") as HTMLSelectElement;
-
-// Inputs A
-const planchesDurationA = document.querySelector("#planches-time-a") as HTMLInputElement;
-const planchesRestA = document.querySelector("#planches-rest-a") as HTMLInputElement;
-
-const gobletSeries = document.querySelector("#goblet-series") as HTMLInputElement;
-const gobletReps = document.querySelector("#goblet-reps") as HTMLInputElement;
-const gobletRest = document.querySelector("#goblet-rest") as HTMLInputElement;
-
-const pushupsSeries = document.querySelector("#pushups-series") as HTMLInputElement;
-const pushupsReps1 = document.querySelector("#pushups-reps-1") as HTMLInputElement;
-const pushupsReps2 = document.querySelector("#pushups-reps-2") as HTMLInputElement;
-const pushupsReps3 = document.querySelector("#pushups-reps-3") as HTMLInputElement;
-const pushupsReps4 = document.querySelector("#pushups-reps-4") as HTMLInputElement;
-const pushupsRest = document.querySelector("#pushups-rest") as HTMLInputElement;
-
-const dumbbellSeries = document.querySelector("#dumbbell-series") as HTMLInputElement;
-const dumbbellReps = document.querySelector("#dumbbell-reps") as HTMLInputElement;
-const dumbbellRest = document.querySelector("#dumbbell-rest") as HTMLInputElement;
-
-const curlRest = document.querySelector("#biceps-rest") as HTMLInputElement;
-
-const curlLeft1 = document.querySelector("#biceps-s1-izq") as HTMLInputElement;
-const curlLeft2 = document.querySelector("#biceps-s2-izq") as HTMLInputElement;
-const curlLeft3 = document.querySelector("#biceps-s3-izq") as HTMLInputElement;
-const curlLeft4 = document.querySelector("#biceps-s4-izq") as HTMLInputElement;
-
-const curlRight1 = document.querySelector("#biceps-s1-der") as HTMLInputElement;
-const curlRight2 = document.querySelector("#biceps-s2-der") as HTMLInputElement;
-const curlRight3 = document.querySelector("#biceps-s3-der") as HTMLInputElement;
-const curlRight4 = document.querySelector("#biceps-s4-der") as HTMLInputElement;
-
-const tricepsSeries = document.querySelector("#triceps-series") as HTMLInputElement;
-const tricepsReps = document.querySelector("#triceps-reps") as HTMLInputElement;
-const tricepsRest = document.querySelector("#triceps-rest") as HTMLInputElement;
-
-const formA = document.querySelector(".full-body-a") as HTMLFieldSetElement;
-const formB = document.querySelector(".full-body-b") as HTMLFieldSetElement;
-
-// Inputs B
-
-const planchesDurationB = document.querySelector("#planches-time-b") as HTMLInputElement;
-const planchesRestB = document.querySelector("#planches-rest-b") as HTMLInputElement;
-
-const bulgarianSeries = document.querySelector("#bulgarian-series") as HTMLInputElement;
-const bulgarianReps = document.querySelector("#bulgarian-reps") as HTMLInputElement;
-const bulgarianRest = document.querySelector("#bulgarian-rest") as HTMLInputElement;
-
-const deadliftSeries = document.querySelector("#deadlift-series") as HTMLInputElement;
-const deadliftReps = document.querySelector("#deadlift-reps") as HTMLInputElement;
-const deadliftRest = document.querySelector("#deadlift-rest") as HTMLInputElement;
-
-const shoulderSeries = document.querySelector("#shoulder-series") as HTMLInputElement;
-const shoulderReps = document.querySelector("#shoulder-reps") as HTMLInputElement;
-const shoulderRest = document.querySelector("#shoulder-rest") as HTMLInputElement;
-
-const birdDogSeries = document.querySelector("#birddog-series") as HTMLInputElement;
-const birdDogReps = document.querySelector("#birddog-reps") as HTMLInputElement;
-const birdDogRest = document.querySelector("#birddog-rest") as HTMLInputElement;
-
-const elevationSeries = document.querySelector("#elevation-series") as HTMLInputElement;
-const elevationReps = document.querySelector("#elevation-reps") as HTMLInputElement;
-const elevationRest = document.querySelector("#elevation-rest") as HTMLInputElement;
-
-const inputBtnA = document.querySelector(".input-btn-a") as HTMLButtonElement;
-const inputBtnB = document.querySelector(".input-btn-b") as HTMLButtonElement;
-
-// Functions
-
-function repsToArray(reps: number, series: number) {
-
-  let result: number[] = [];
-  for (let i = 1; i <= series; i++) {
-    result.push(reps)
-  }
-
-  return result
-}
-
-function createListOfExercises(...exercises: Exercise[]): Exercise[] {
-  return exercises;
-}
-
-function saveToStorage(sessions: Session[]): void {
-  localStorage.setItem("sessions", JSON.stringify(sessions));
-}
-
-function loadFromStorage(): Session[] {
-  const save = localStorage.getItem("sessions");
-  if (save === null) return [];
-  return JSON.parse(save) as Session[];
-}
-
-// Se definen las reglas de los datos a almacenar.
-
-type Serie = number | { left: number; right: number } | number[]
-
-interface RepsExercise {
-  type: "reps";
-  name: string;
-  series: Serie[];
-  weight: number;
-  rest: number;
-}
-
-interface TimeExercise {
-  type: "time";
-  name: string;
-  duration: number; // segundos
-  rest: number;
-}
-
+// ---------- TIPOS ----------
+type Serie = number | { left: number; right: number } | number[];
+interface RepsExercise { type: "reps"; name: string; series: Serie[]; weight: number; rest: number }
+interface TimeExercise { type: "time"; name: string; duration: number; rest: number }
 type Exercise = RepsExercise | TimeExercise;
+type RoutineId = "A" | "B";
+interface Session { id: number; date: string; routine: RoutineId; exercises: Exercise[] }
 
-interface Session {
-  id: number; // Date.now()
-  date: string; // (xx-xx-xxxx)
-  routine: "A" | "B";
-  exercises: Exercise[];
+// ---------- STORAGE ----------
+const KEY = "sessions";
+const save = (s: Session[]): void => localStorage.setItem(KEY, JSON.stringify(s));
+function load(): Session[] {
+  try { const raw = localStorage.getItem(KEY); return raw ? (JSON.parse(raw) as Session[]) : []; }
+  catch { return []; }
+}
+let sessions: Session[] = load();
+
+// ---------- FORMULARIO: cada rutina descrita como datos (los ids son los de tu HTML) ----------
+type Spec =
+  | { kind: "time"; name: string; timeId: string; restId: string }
+  | { kind: "uniform"; name: string; id: string; weight: number } // ids: `${id}-series|reps|rest`
+  | { kind: "list"; name: string; repIds: string[]; restId: string; weight: number }
+  | { kind: "pairs"; name: string; ids: [string, string][]; restId: string; weight: number };
+
+const n4 = [1, 2, 3, 4];
+const ROUTINES: Record<RoutineId, Spec[]> = {
+  A: [
+    { kind: "time", name: "Planchas", timeId: "planches-time-a", restId: "planches-rest-a" },
+    { kind: "uniform", name: "Sentadilla Goblet", id: "goblet", weight: 6 },
+    { kind: "list", name: "Flexiones de Brazo", repIds: n4.map(n => `pushups-reps-${n}`), restId: "pushups-rest", weight: 0 },
+    { kind: "uniform", name: "Remo con Mancuerna", id: "dumbbell", weight: 6 },
+    { kind: "pairs", name: "Curl de Bíceps", ids: n4.map(n => [`biceps-s${n}-izq`, `biceps-s${n}-der`] as [string, string]), restId: "biceps-rest", weight: 6 },
+    { kind: "uniform", name: "Fondo de Tríceps", id: "triceps", weight: 0 },
+  ],
+  B: [
+    { kind: "time", name: "Planchas", timeId: "planches-time-b", restId: "planches-rest-b" },
+    { kind: "uniform", name: "Sentadillas Búlgara", id: "bulgarian", weight: 0 },
+    { kind: "uniform", name: "Peso Muerto Rumano", id: "deadlift", weight: 0 },
+    { kind: "uniform", name: "Elevación lateral de Hombros", id: "shoulder", weight: 0 },
+    { kind: "uniform", name: "Bird Dog", id: "birddog", weight: 0 },
+    { kind: "uniform", name: "Elevación de Piernas", id: "elevation", weight: 0 },
+  ],
 };
 
-let sessions: Session[] = loadFromStorage();
+const num = (id: string): number => (document.getElementById(id) as HTMLInputElement).valueAsNumber;
+const repsToArray = (reps: number, series: number): number[] => Array.from({ length: Math.max(0, series || 0) }, () => reps);
 
-// VENTANA MODAL
-
-addRoutineBtn.addEventListener("click", (event: MouseEvent) => {
-  event.preventDefault();
-  modalWindow.classList.remove("hidden");
-})
-
-closeModalBtn.addEventListener("click", (event: MouseEvent) => {
-  event.preventDefault();
-  modalWindow.classList.add("hidden");
-})
-
-modalWindow.addEventListener("click", (event: MouseEvent) => {
-
-  if (event.target == modalWindow) {
-    event.preventDefault();
-    modalWindow.classList.add("hidden");
+function readExercise(s: Spec): Exercise {
+  switch (s.kind) {
+    case "time": return { type: "time", name: s.name, duration: num(s.timeId), rest: num(s.restId) };
+    case "uniform": return { type: "reps", name: s.name, series: repsToArray(num(`${s.id}-reps`), num(`${s.id}-series`)), weight: s.weight, rest: num(`${s.id}-rest`) };
+    case "list": return { type: "reps", name: s.name, series: s.repIds.map(num), weight: s.weight, rest: num(s.restId) };
+    case "pairs": return { type: "reps", name: s.name, series: s.ids.map(([l, r]) => ({ left: num(l), right: num(r) })), weight: s.weight, rest: num(s.restId) };
   }
-})
+}
 
-// SELECCIONAR FORMULARIO
+// ---------- CÁLCULOS (Fase 5) ----------
+function repsDeSerie(s: Serie): number {
+  if (typeof s === "number") return s;           // type narrowing
+  if (Array.isArray(s)) return s.reduce((a, b) => a + b, 0);
+  return s.left + s.right;
+}
+const volumenEjercicio = (e: Exercise): number =>
+  e.type === "time" ? e.duration : e.series.reduce<number>((acc, s) => acc + repsDeSerie(s), 0);
 
-selectRoutineBtn.addEventListener("click", (event: MouseEvent) => {
-  event.preventDefault()
-  if (routine.value === "A") {
-    formB.classList.add("hidden");
-    formA.classList.remove("hidden");
+const byDate = (a: Session, b: Session): number => a.date.localeCompare(b.date) || a.id - b.id;
+
+function historialEjercicio(name: string): { fecha: string; volumen: number }[] {
+  return [...sessions].sort(byDate).flatMap(s => {
+    const e = s.exercises.find(x => x.name === name);
+    return e ? [{ fecha: s.date, volumen: volumenEjercicio(e) }] : [];
+  });
+}
+// Meseta: en las últimas n sesiones, ninguna superó el volumen de la más antigua de ese grupo.
+function detectarMeseta(name: string, n = 3): boolean {
+  const h = historialEjercicio(name);
+  if (h.length < n) return false;
+  const w = h.slice(-n);
+  return w.slice(1).every(p => p.volumen <= w[0].volumen);
+}
+
+// ---------- VALIDACIÓN (Fase 7) ----------
+function isValid(e: Exercise): boolean {
+  const ok = (x: number): boolean => Number.isFinite(x) && x >= 0;
+  if (!ok(e.rest)) return false;
+  if (e.type === "time") return ok(e.duration) && e.duration > 0;
+  return e.series.length > 0 && e.series.every(s => ok(repsDeSerie(s)));
+}
+
+// ---------- RENDER (Fase 4) ----------
+const $ = <T extends HTMLElement>(sel: string): T => document.querySelector(sel) as T;
+const fmtDate = (d: string): string => d.split("-").reverse().join("/");
+const serieTxt = (s: Serie): string => (typeof s === "number" ? String(s) : Array.isArray(s) ? s.join("+") : `${s.left}/${s.right}`);
+
+function exerciseRow(e: Exercise): string {
+  let detail: string;
+  if (e.type === "time") detail = `<p class="reps">${e.duration}x${e.rest} seg</p>`;
+  else if (e.series.some(s => typeof s === "object" && !Array.isArray(s))) {
+    const side = (k: "left" | "right") => e.series.map(s => (typeof s === "object" && !Array.isArray(s) ? s[k] : "-")).join(" ");
+    detail = `<div class="curl-info"><p class="left reps">I: ${side("left")}</p><p class="right reps">D: ${side("right")}</p></div>`;
+  } else detail = `<p class="reps">${e.series.map(serieTxt).join(" ")}</p>`;
+  return `<div class="exercise-info"><p class="exercise-name">${e.name}</p>${detail}</div>`;
+}
+const cardHTML = (s: Session): string => `
+  <div class="routine-card card-${s.routine.toLowerCase()}">
+    <header class="card-header">
+      <h4 class="routine-name">Full Body ${s.routine}</h4>
+      <p class="routine-date">${fmtDate(s.date)}</p>
+      <button class="delete-btn" type="button" data-id="${s.id}" aria-label="Eliminar sesión">🗑</button>
+    </header>
+    <section class="card-main">
+      <header class="table-header"><p class="table-header__title">Ejercicio</p><p class="table-header__title">Desglose</p></header>
+      <main class="table-contain">${s.exercises.map(exerciseRow).join("")}</main>
+    </section>
+  </div>`;
+
+function render(): void {
+  const recent = [...sessions].sort(byDate).reverse(); // más reciente primero
+  // .record usa *-reverse en tu CSS: el DOM va de más antigua a más nueva
+  $(".record").innerHTML = recent.length
+    ? recent.slice(0, 5).reverse().map(cardHTML).join("")
+    : `<p class="empty">Aún no registras sesiones</p>`;
+  $("#history-list").innerHTML = recent.map(cardHTML).join("");
+  $("#more-btn").classList.toggle("hidden", recent.length <= 5);
+
+  const names = [...new Set(sessions.flatMap(s => s.exercises.map(e => e.name)))];
+  const stalled = names.filter(n => detectarMeseta(n));
+  $("#notices").innerHTML = stalled.map(n => `<p class="notice">⚠ Llevas 3 sesiones sin progresar en ${n}</p>`).join("");
+}
+
+// ---------- MODALES ----------
+function setupModal(modal: HTMLElement, openBtn: HTMLElement): void {
+  const close = (): void => modal.classList.add("hidden");
+  openBtn.addEventListener("click", () => modal.classList.remove("hidden"));
+  modal.querySelector(".close-btn")?.addEventListener("click", close);
+  modal.addEventListener("click", e => { if (e.target === modal) close(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
+}
+const formModal = $("#form-modal");
+setupModal(formModal, $(".add-btn"));
+setupModal($("#history-modal"), $("#more-btn"));
+
+// ---------- FORMULARIO ----------
+const form = $<HTMLFormElement>(".session-form");
+const routineSel = $<HTMLSelectElement>("#routine");
+const fieldsets: Record<RoutineId, HTMLElement> = { A: $(".full-body-a"), B: $(".full-body-b") };
+const errorEl = $("#form-error");
+
+$(".initial-btn").addEventListener("click", e => {
+  e.preventDefault();
+  const r = routineSel.value;
+  if (r === "A" || r === "B") {            // valida en ejecución y de paso angosta el tipo a "A" | "B"
+    fieldsets.A.classList.toggle("hidden", r !== "A");
+    fieldsets.B.classList.toggle("hidden", r !== "B");
   }
-  else if (routine.value === "B") {
-    formA.classList.add("hidden");
-    formB.classList.remove("hidden");
+});
+
+function register(r: RoutineId): void {
+  const date = $<HTMLInputElement>("#date").value;
+  const exercises = ROUTINES[r].map(readExercise);
+  if (!date || !exercises.every(isValid)) {
+    errorEl.textContent = "Completa la fecha y todos los campos con números válidos (sin negativos).";
+    return;
   }
-})
-
-// Registrar rutinas
-
-inputBtnA.addEventListener("click", () => {
-  const routineDate: string = dateInput.value;
-  const routineType: string = routine.value;
-
-  const planches: TimeExercise = {
-    type: "time",
-    name: "Planchas",
-    duration: planchesDurationA.valueAsNumber,
-    rest: planchesRestA.valueAsNumber
-  }
-
-  const goblet: RepsExercise = {
-    type: "reps",
-    name: "Sentadilla Goblet",
-    series: repsToArray(gobletReps.valueAsNumber, gobletSeries.valueAsNumber),
-    weight: 6,
-    rest: gobletRest.valueAsNumber,
-  }
-
-  const pushups: RepsExercise = {
-    type: "reps",
-    name: "Flexiones de Brazo",
-    series: [pushupsReps1.valueAsNumber, pushupsReps2.valueAsNumber, pushupsReps3.valueAsNumber, pushupsReps4.valueAsNumber],
-    weight: 0,
-    rest: pushupsRest.valueAsNumber,
-  }
-
-  const dumbbell: RepsExercise = {
-    type: "reps",
-    name: "Remo con Mancuerna",
-    series: repsToArray(dumbbellReps.valueAsNumber, dumbbellSeries.valueAsNumber),
-    weight: 6,
-    rest: dumbbellRest.valueAsNumber,
-  }
-
-  const curls: RepsExercise = {
-    type: "reps",
-    name: "Curl de Bíceps",
-    series: [
-      { left: curlLeft1.valueAsNumber, right: curlRight1.valueAsNumber },
-      { left: curlLeft2.valueAsNumber, right: curlRight2.valueAsNumber },
-      { left: curlLeft3.valueAsNumber, right: curlRight3.valueAsNumber },
-      { left: curlLeft4.valueAsNumber, right: curlRight4.valueAsNumber },
-    ],
-    weight: 6,
-    rest: curlRest.valueAsNumber,
-  }
-
-  const triceps: RepsExercise = {
-    type: "reps",
-    name: "Fondo de Tríceps",
-    series: repsToArray(tricepsReps.valueAsNumber, tricepsSeries.valueAsNumber),
-    weight: 0,
-    rest: tricepsRest.valueAsNumber,
-  }
-
-  const routineResults: Session = {
-    id: Date.now() + Math.floor(Math.random() * 50),
-    date: routineDate,
-    routine: routineType,
-    exercises: createListOfExercises(planches, goblet, pushups, dumbbell, curls, triceps),
-  }
-
-  sessions.push(routineResults);
-  saveToStorage(sessions)
-
+  errorEl.textContent = "";
+  sessions.push({ id: Date.now(), date, routine: r, exercises });
+  save(sessions);
   form.reset();
+  fieldsets.A.classList.add("hidden");
+  fieldsets.B.classList.add("hidden");
+  formModal.classList.add("hidden");
+  render();
+}
+$(".input-btn-a").addEventListener("click", () => register("A"));
+$(".input-btn-b").addEventListener("click", () => register("B"));
 
-})
+// Eliminar 
+document.addEventListener("click", e => {
+  const btn = (e.target as HTMLElement).closest<HTMLElement>(".delete-btn");
+  if (!btn || !confirm("¿Eliminar esta sesión?")) return;
+  sessions = sessions.filter(s => s.id !== Number(btn.dataset.id));
+  save(sessions);
+  render();
+});
 
-inputBtnB.addEventListener("click", () => {
-  const routineDate: String = dateInput.value;
-  const routineType: String = routine.value;
-
-  const planches: TimeExercise = {
-    type: "time",
-    name: "Planchas",
-    duration: planchesDurationB.valueAsNumber,
-    rest: planchesRestB.valueAsNumber
-  }
-
-  const bulgarian: RepsExercise = {
-    type: "reps",
-    name: "Sentadillas Búlgara",
-    series: repsToArray(bulgarianReps.valueAsNumber, bulgarianSeries.valueAsNumber),
-    weight: 0,
-    rest: bulgarianRest.valueAsNumber
-  }
-
-  const deadlift: RepsExercise = {
-    type: "reps",
-    name: "Peso Muerto Rumano",
-    series: repsToArray(deadliftReps.valueAsNumber, deadliftSeries.valueAsNumber),
-    weight: 0,
-    rest: deadliftRest.valueAsNumber
-  }
-
-  const shoulder: RepsExercise = {
-    type: "reps",
-    name: "Elevació lateral de Hombros",
-    series: repsToArray(shoulderReps.valueAsNumber, shoulderSeries.valueAsNumber),
-    weight: 0,
-    rest: shoulderRest.valueAsNumber
-  }
-
-  const birdDog: RepsExercise = {
-    type: "reps",
-    name: "Bird Dog",
-    series: repsToArray(birdDogReps.valueAsNumber, birdDogSeries.valueAsNumber),
-    weight: 0,
-    rest: birdDogRest.valueAsNumber
-  }
-
-  const elevation: RepsExercise = {
-    type: "reps",
-    name: "Elevación de Piernas",
-    series: repsToArray(elevationReps.valueAsNumber, elevationSeries.valueAsNumber),
-    weight: 0,
-    rest: elevationRest.valueAsNumber
-  }
-
-  const routineResults: Session = {
-    id: Date.now() + Math.floor(Math.random() * 50),
-    date: routineDate,
-    routine: routineType,
-    exercises: createListOfExercises(planches, bulgarian, deadlift, shoulder, birdDog, elevation),
-  }
-
-  sessions.push(routineResults);
-  saveToStorage(sessions)
-
-  form.reset();
-
-})
-
-
-
-
-
-
+render();
